@@ -5,9 +5,26 @@
 
 Console.Clear();
 
-for (int count = 0; count < 3; count++)
+int lenght = GetArrayLenghtFromUser("Введите длину массива: ");
+int[] array = GetArrayFromUser(lenght);
+
+Console.Write($"{String.Join(", ", array)} -> [{String.Join(", ", array)}]");
+
+int GetArrayLenghtFromUser(string lenghtMessage)
 {
-    int num = GetNumberFromUser("Введите целое число: ", "Ошибка ввода!");
+    Console.Write(lenghtMessage);
+    int userInput = int.Parse(Console.ReadLine() ?? "");
+    return userInput;
+}
+
+int[] GetArrayFromUser(int size)
+{
+    int[] result = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        result[i] = GetNumberFromUser("Введите целое число: ", "Ошибка ввода! ");
+    }
+    return result;
 }
 
 int GetNumberFromUser(string message, string errorMessage)
@@ -20,5 +37,4 @@ int GetNumberFromUser(string message, string errorMessage)
             return userNumber;
         Console.WriteLine(errorMessage);
     }
-    
 }
